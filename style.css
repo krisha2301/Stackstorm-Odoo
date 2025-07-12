@@ -1,0 +1,108 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.topbar {
+  background: #f5f5f5;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+
+#loginBtn {
+  padding: 0.5rem 1rem;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.search-bar {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.profile-list {
+  padding: 2rem;
+}
+
+.profile-card {
+  display: flex;
+  gap: 15px;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+  align-items: center;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.skills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.skill {
+  display: inline-block;
+  background: #eee;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin: 0 5px 5px 0;
+}
+
+.request-btn {
+  background-color: #aef;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.pagination {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.pagination span {
+  margin: 0 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.page.active {
+  background: black;
+  color: white;
+  border-radius: 4px;
+}

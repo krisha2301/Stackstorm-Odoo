@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Swap Request</title>
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      border: 2px solid white;
+      border-radius: 25px;
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
+      box-sizing: border-box;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    select,
+    textarea {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 25px;
+      border-radius: 15px;
+      border: 2px solid white;
+      font-size: 16px;
+      background-color: #000;
+      color: white;
+      appearance: none;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 24px;
+    }
+
+    textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    button {
+      display: block;
+      width: 150px;
+      margin: 0 auto;
+      background-color: #0a437a;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      padding: 10px 0;
+      font-size: 18px;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #125e9c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form id="swapForm">
+      <label for="offered-skill">Choose one of your offered skills</label>
+      <select id="offered-skill" name="offeredSkill" required>
+        <option value="">Select a skill</option>
+        <option value="coding">Coding</option>
+        <option value="design">Design</option>
+        <option value="marketing">Marketing</option>
+        <option value="public-speaking">Public Speaking</option>
+        <option value="writing">Writing</option>
+        <!-- Add more skills as needed -->
+      </select>
+
+      <label for="wanted-skill">Choose one of their wanted skills</label>
+      <select id="wanted-skill" name="wantedSkill" required>
+        <option value="">Select a skill</option>
+        <option value="coding">Coding</option>
+        <option value="design">Design</option>
+        <option value="marketing">Marketing</option>
+        <option value="public-speaking">Public Speaking</option>
+        <option value="writing">Writing</option>
+        <!-- Add more skills as needed -->
+      </select>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Type your message here..."></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>

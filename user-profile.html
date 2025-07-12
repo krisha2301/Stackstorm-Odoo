@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile - Skill Swap Platform</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+    }
+
+    .top-bar h2 {
+      margin: 0;
+    }
+
+    .top-bar a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .top-bar a:hover {
+      text-decoration: underline;
+    }
+
+    .top-bar img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+
+    .profile {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .form-section {
+      flex: 1;
+      padding-right: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      background-color: #2e2e2e;
+      border-radius: 20px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    .tag span {
+      margin-right: 6px;
+    }
+
+    .tag button {
+      background: none;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .photo-section {
+      text-align: center;
+    }
+
+    .photo-section img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .photo-buttons {
+      margin-top: 10px;
+    }
+
+    .photo-buttons label,
+    .photo-buttons button {
+      margin: 0 5px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #2e2e2e;
+      color: white;
+    }
+
+    .save-controls {
+      margin-top: 20px;
+    }
+
+    .save-controls button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .save {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .discard {
+      background-color: #f44336;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <h2>Skill Swap Platform</h2>
+      <div>
+        <button class="save">Save</button>
+        <button class="discard">Discard</button>
+        <a href="swap-request.html">Swap request</a>
+        <a href="index.html">Home</a>
+        <img id="topProfilePhoto" src="https://i.ibb.co/h2mTZt2/profile.png" alt="Profile">
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="form-section">
+        <!-- Your form fields remain the same -->
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Enter name" />
+        </div>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" placeholder="Enter location" />
+        </div>
+        <div class="form-group">
+          <label for="skillsOffered">Skills Offered</label>
+          <select id="skillsOffered">
+            <option value="">Select a skill</option>
+            <option>Graphic Design</option>
+            <option>Video Editing</option>
+            <option>Photoshop</option>
+            <option>Web Development</option>
+            <option>Excel</option>
+            <option>Public Speaking</option>
+          </select>
+          <div class="tags" id="offeredTags"></div>
+        </div>
+        <div class="form-group">
+          <label for="skillsWanted">Skills Wanted</label>
+          <select id="skillsWanted">
+            <option value="">Select a skill</option>
+            <option>Python</option>
+            <option>JavaScript</option>
+            <option>Manager</option>
+            <option>Team Leadership</option>
+            <option>SEO</option>
+            <option>UI/UX Design</option>
+          </select>
+          <div class="tags" id="wantedTags"></div>
+        </div>
+        <div class="form-group">
+          <label for="availability">Availability</label>
+          <input type="text" id="availability" placeholder="e.g. weekends" />
+        </div>
+        <div class="form-group">
+          <label for="profile">Profile</label>
+          <select id="profile">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="photo-section">
+        <img id="profilePhoto" src="https://i.ibb.co/h2mTZt2/profile.png" alt="Profile Photo">
+        <div class="photo-buttons">
+          <label for="photoInput">Add/Edit</label>
+          <button style="color:red;" onclick="removePhoto()">Remove</button>
+        </div>
+        <input type="file" id="photoInput" accept="image/*" style="display:none;">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const skillsOfferedSelect = document.getElementById("skillsOffered");
+    const skillsWantedSelect = document.getElementById("skillsWanted");
+    const offeredTags = document.getElementById("offeredTags");
+    const wantedTags = document.getElementById("wantedTags");
+
+    const offeredSkills = new Set();
+    const wantedSkills = new Set();
+
+    skillsOfferedSelect.addEventListener("change", function () {
+      const skill = this.value;
+      if (skill && !offeredSkills.has(skill)) {
+        offeredSkills.add(skill);
+        addTag(skill, offeredTags, offeredSkills);
+      }
+      this.selectedIndex = 0;
+    });
+
+    skillsWantedSelect.addEventListener("change", function () {
+      const skill = this.value;
+      if (skill && !wantedSkills.has(skill)) {
+        wantedSkills.add(skill);
+        addTag(skill, wantedTags, wantedSkills);
+      }
+      this.selectedIndex = 0;
+    });
+
+    function addTag(skill, container, skillSet) {
+      const tag = document.createElement("div");
+      tag.className = "tag";
+      tag.innerHTML = `<span>${skill}</span><button onclick="this.parentElement.remove(); skillSet.delete('${skill}')">x</button>`;
+      container.appendChild(tag);
+    }
+
+    document.getElementById("photoInput").addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const imageData = e.target.result;
+          document.getElementById("profilePhoto").src = imageData;
+          document.getElementById("topProfilePhoto").src = imageData;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function removePhoto() {
+      const defaultImage = "https://i.ibb.co/h2mTZt2/profile.png";
+      document.getElementById("profilePhoto").src = defaultImage;
+      document.getElementById("topProfilePhoto").src = defaultImage;
+      document.getElementById("photoInput").value = "";
+    }
+  </script>
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDqzB04iYbGjYt1FkGSP9E_UckplKM7qyo",
+    authDomain: "stackstorm-14fad.firebaseapp.com",
+    projectId: "stackstorm-14fad",
+    storageBucket: "stackstorm-14fad.appspot.com",
+    messagingSenderId: "320792510579",
+    appId: "1:320792510579:web:c9f795ef44bc91250c2a06",
+    databaseURL: "https://stackstorm-14fad-default-rtdb.asia-southeast1.firebasedatabase.app"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.database();
+</script>
+<script>
+  document.querySelector(".save").addEventListener("click", function () {
+    const user = auth.currentUser;
+
+    if (!user) {
+      alert("You must be logged in to save your profile.");
+      return;
+    }
+
+    const name = document.getElementById("name").value;
+    const location = document.getElementById("location").value;
+    const availability = document.getElementById("availability").value;
+    const profileVisibility = document.getElementById("profile").value;
+
+    const skillsOffered = [...document.getElementById("offeredTags").querySelectorAll(".tag span")].map(el => el.innerText);
+    const skillsWanted = [...document.getElementById("wantedTags").querySelectorAll(".tag span")].map(el => el.innerText);
+
+    const photoURL = document.getElementById("profilePhoto").src;
+
+    const profileData = {
+      name,
+      location,
+      availability,
+      profileVisibility,
+      photo: photoURL,
+      skillsOffered,
+      skillsWanted,
+      rating: 0,
+    };
+
+    db.ref("users/" + user.uid).set(profileData)
+      .then(() => {
+        alert("Profile saved successfully!");
+      })
+      .catch((error) => {
+        console.error("Error saving profile:", error);
+      });
+  });
+</script>
+
+</body>
+</html>

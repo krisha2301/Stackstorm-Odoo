@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skill Swap Platform</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Skill Swap Platform</h1>
+    <div id="top-right">
+      <button id="loginBtn">Login</button>
+      <img src="avatar.jpeg" alt="Profile" id="userAvatar" style="display: none;">
+    </div>
+  </header>
+
+  <main>
+    <section class="search-bar">
+      <select id="availabilityFilter">
+        <option value="">Availability</option>
+        <option value="weekends">Weekends</option>
+        <option value="evenings">Evenings</option>
+      </select>
+      <input type="text" placeholder="Search by skill..." id="skillSearch" />
+      <button>Search</button>
+    </section>
+
+    <section class="profile-list" id="profileList">
+      <!-- Dynamically rendered profiles here -->
+    </section>
+
+    <section class="pagination">
+      <span>&lt;</span>
+      <span class="page active">1</span>
+      <span class="page">2</span>
+      <span class="page">3</span>
+      <span>&gt;</span>
+    </section>
+  </main>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDqzB04iYbGjYt1FkGSP9E_UckplKM7qyo",
+    authDomain: "stackstorm-14fad.firebaseapp.com",
+    projectId: "stackstorm-14fad",
+    storageBucket: "stackstorm-14fad.appspot.com",
+    messagingSenderId: "320792510579",
+    appId: "1:320792510579:web:c9f795ef44bc91250c2a06",
+    databaseURL: "https://stackstorm-14fad-default-rtdb.asia-southeast1.firebasedatabase.app"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+  const auth = firebase.auth();
+</script>
+
+  <script src="mainhome.js"></script>
+</body>
+</html>
